@@ -1,0 +1,37 @@
+﻿@model ContactForm.ViewModel.ContactFormViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-6">Welcome</h1>  
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="SendEmail" asp-controller="Home" method="post">
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" required />
+            </div>
+            <div>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" required />
+            </div>
+            <div>
+                <label asp-for="Message"></label>
+                <textarea asp-for="Message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>
+@{
+    if (TempData["EmailSuccess"]!=null)
+    {
+        <h1>@TempData["EmailSuccess"]</h1>
+    }
+    if (TempData["EmailError"]!=null)
+    {
+        <h1>@TempData["EmailError"]</h1>
+    }
+}
