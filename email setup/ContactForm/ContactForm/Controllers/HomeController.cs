@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ContactForm.ViewModel;
 using System.Net.Mail;
 using System.Net;
+using System.Reflection;
 
 namespace ContactForm.Controllers
 {
@@ -75,3 +76,4 @@ namespace ContactForm.Controllers
         }
     }
 }
+
