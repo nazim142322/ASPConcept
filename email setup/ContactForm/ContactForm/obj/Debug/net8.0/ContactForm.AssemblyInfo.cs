@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContactForm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+478ad31ceecdadae59b5f4cdf33ee117e043a2a6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c83e812c22825ed1cbdfca149bb7afee0bdff1d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContactForm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContactForm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,11 +3,21 @@
 }
 
 <div class="text-center">
-    <h1 class="display-6">Welcome</h1>   
+    <h1 class="display-6">Welcome</h1>
+    @{
+        if (TempData["EmailSuccess"] != null)
+        {
+            <h6>@TempData["EmailSuccess"]</h6>
+        }
+        if (TempData["EmailError"] != null)
+        {
+            <h6>@TempData["EmailError"]</h6>
+        }
+    }
 </div>
-<div class="row ">
-    <div class="col-md-4 offset-4 border shadow rounded-1 p-4">
-        <form asp-action="SendEmail" asp-controller="Home" method="post">
+<div class="row">
+    <div class="col-md-4 mx-auto border shadow rounded-1 p-4">
+        <form asp-action="SendEmail" asp-controller="Home" method="post" id="contactForm">
             <div>
                 <label for="Name" class="form-label">Name</label>
                 <input type="text" id="Name" name="Name" class="form-control" required />
@@ -22,5 +32,11 @@
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Send Message</button>
         </form>
+       
     </div>
 </div>
+<script>
+        window.onload = function() {
+        document.getElementById("contactForm").reset();
+    };
+</script>

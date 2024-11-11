@@ -25,15 +25,48 @@ namespace ContactFormAppSetting.Controllers
 
         public async Task<IActionResult> SendEmail(string Name, string Email, string Message)
         {
-
-            //var data = new { Name, Email, Message };
-
-            var smtpSetting = new EmailSettingsViewModel
+            try
             {
-               // SmtpServer = configuration.GetValue<string>("EmailSettings:SmtpServer")
-               SmtpServer = configuration["EmailSettings:SmtpServer"] // return string
-            };
-            return Json(smtpSetting);
+                //var data = new { Name, Email, Message };
+
+                //Retrieving email settings from appsettings.json.
+                // SmtpServer = configuration.GetValue<string>("EmailSettings:SmtpServer")
+                var smtpServer = configuration["EmailSettings:SmtpServer"]; // return string
+                var smtpPort = configuration.GetValue<int>("EmailSettings:SmtpPort");
+                var senderEmail = configuration["EmailSettings:SenderEmail"];
+                var senderPass = configuration.GetValue<string>("EmailSettings:SenderPassword");
+                var enableSSL = configuration.GetValue<bool>("EmailSettings:EnableSSL");
+
+                //setup SMTP client for sending email
+                var smtpClient = new SmtpClient(smtpServer)
+                {
+                    Port = smtpPort,
+                    Credentials = new NetworkCredential(senderEmail, senderPass),
+                    EnableSsl = enableSSL
+
+                };
+                // create email messae
+                var mailMessage = new MailMessage()
+                {
+                    From = new MailAddress("Servicedoon@gmail.com"),
+                    Subject = "New Form Enquiry",
+                    Body = $"Name : {Name}\n Email : {Email}\n Message :{Message}",
+                    IsBodyHtml = false,
+                };
+                // Add recipient email 
+                mailMessage.To.Add("nazim142322@gmail.com");
+
+                //Send email
+                await smtpClient.SendMailAsync(mailMessage);
+                TempData["EmailSuccess"] = "Message Sent";
+            }
+            catch (Exception ex)
+            {
+                TempData["EmailError"] = "There was an error sending the message"+ex.Message;
+            }
+
+            return RedirectToAction("Index");
+            //return Json(new {Name, Email, Message, smtpServer, smtpPort, senderEmail, senderPass, enableSSL});
         }
 
         public IActionResult Privacy()
