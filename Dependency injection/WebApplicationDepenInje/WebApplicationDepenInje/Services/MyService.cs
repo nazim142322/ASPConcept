@@ -17,24 +17,3 @@
 //2- register the service
 //3-consume the service in controller
 
-public class Car
-{
-    // Properties of Car
-    public string Brand { get; set; }
-    public string Model { get; set; }
-    public int Year { get; set; }
-
-    // Constructor with parameters
-    public Car(string brand, string model, int year)
-    {
-        Brand = brand;    // Set Brand using the parameter
-        Model = model;    // Set Model using the parameter
-        Year = year;      // Set Year using the parameter
-    }
-
-    // Method to display car details
-    public void DisplayCarInfo()
-    {
-        Console.WriteLine($"Brand: {Brand}, Model: {Model}, Year: {Year}");
-    }
-}
